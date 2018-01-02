@@ -1,6 +1,9 @@
 package com.anber.dao;
 
 import com.anber.model.SysDept;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysDeptMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,8 @@ public interface SysDeptMapper {
     int updateByPrimaryKeySelective(SysDept record);
 
     int updateByPrimaryKey(SysDept record);
+
+    int checkByNameAndParentId(@Param("deptName") String deptName, @Param("parentId") Integer parentId, @Param("id") Integer id);
+
+    List<SysDept> getAllDept();
 }

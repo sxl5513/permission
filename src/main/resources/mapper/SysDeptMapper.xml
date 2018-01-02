@@ -138,4 +138,20 @@
       operate_ip = #{operateIp,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="checkByNameAndParentId" parameterType="map" resultType="int" >
+    SELECT COUNT(1)
+    FROM sys_dept
+    WHERE name = #{deptName}
+    <if test="parentId != null" >
+      and parent_id = #{parentId}
+    </if>
+    <if test="id != null" >
+      and id != #{id}
+    </if>
+  </select>
+  <select id="getAllDept" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_dept
+  </select>
 </mapper>
